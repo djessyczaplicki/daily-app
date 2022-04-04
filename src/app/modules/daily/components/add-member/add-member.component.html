@@ -1,0 +1,17 @@
+<label class="ms-2" for="name">Nombre del participante</label>
+<div class="input-group">
+  <input
+    class="form-control"
+    placeholder="Introduce el nombre del participante"
+    type="text"
+    id="name"
+    name="name"
+    [(ngModel)]="name"
+    (keyup.enter)="addMember()"
+  />
+  <div class="input-group-append">
+    <button class="btn btn-outline-primary" type="button" (click)="addMember()">
+      Añadir
+    </button>
+  </div>
+</div>

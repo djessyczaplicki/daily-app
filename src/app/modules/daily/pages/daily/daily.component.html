@@ -1,1 +1,21 @@
-<p>daily works!</p>
+<div class="m-3">
+  <app-daily-title
+    class="mx-auto text-center"
+    style="width: 400px; display: block"
+  ></app-daily-title>
+  <app-add-member
+    [members]="members"
+    *ngIf="stateIsReady()"
+    class="mx-auto"
+    style="width: 400px; display: block"
+  ></app-add-member>
+  <div class="row mt-3">
+    <div class="col"></div>
+    <div class="col">
+      <app-time-setter></app-time-setter>
+    </div>
+    <div class="col">
+      <app-member-list [members]="members"></app-member-list>
+    </div>
+  </div>
+</div>
