@@ -8,6 +8,10 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/daily/daily.module').then((m) => m.DailyModule),
   },
+  {
+    path: '**',
+    redirectTo: 'daily',
+  },
 ];
 
 @NgModule({

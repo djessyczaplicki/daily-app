@@ -5,15 +5,12 @@ import { DailyComponent } from './pages/daily/daily.component';
 const routes: Routes = [
   {
     path: '',
-    children: [{
-      path: 'daily',
-      component: DailyComponent
-    }]
-  }
+    component: DailyComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class DailyRoutingModule { }
+export class DailyRoutingModule {}
