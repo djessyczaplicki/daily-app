@@ -1,15 +1,9 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { PipesPipe } from './pipes.pipe';
-
-
+import { TimePipe } from './pipes/time.pipe';
 
 @NgModule({
-  declarations: [
-    PipesPipe
-  ],
-  imports: [
-    CommonModule
-  ]
+  declarations: [TimePipe],
+  exports: [TimePipe],
+  imports: [],
 })
-export class SharedModule { }
+export class SharedModule {}

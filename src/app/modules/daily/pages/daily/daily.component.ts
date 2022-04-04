@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
 import { Member } from 'src/app/core/interfaces';
 import { DailyState } from 'src/app/core/interfaces/dailyState';
+import { StorageService } from 'src/app/core/services/storage.service';
 
 @Component({
   selector: 'app-daily',
@@ -8,35 +10,20 @@ import { DailyState } from 'src/app/core/interfaces/dailyState';
   styleUrls: ['./daily.component.scss'],
 })
 export class DailyComponent implements OnInit {
-  constructor() {}
+  constructor(private storageService: StorageService) {}
+  members: Member[] = [];
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.members = this.storageService.getMembers();
+  }
 
   dailyState: DailyState = DailyState.ready;
-
-  members: Member[] = [
-    {
-      name: 'Djessy',
-      timeSpent: 12,
-      hasTalked: false,
-      isTalking: false,
-    },
-    {
-      name: 'Santi',
-      timeSpent: 0,
-      hasTalked: false,
-      isTalking: true,
-    },
-    {
-      name: 'Paco',
-      timeSpent: 0,
-      hasTalked: false,
-      isTalking: false,
-    },
-  ];
 
   stateIsReady(): Boolean {
     return this.dailyState == DailyState.ready;
   }
 
+  start(timePerMember: NgbTimeStruct) {
+    this.dailyState = DailyState.started;
+  }
 }

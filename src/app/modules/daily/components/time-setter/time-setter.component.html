@@ -1,1 +1,9 @@
-<label>Tiempo por participante</label>
+<div class="mx-auto text-center">
+  <label>Tiempo por participante</label>
+  <div class="row pickerContainer">
+    <div class="row pickerCenterer">
+      <ngb-timepicker [(ngModel)]="time" [minuteStep]="5"></ngb-timepicker>
+    </div>
+  </div>
+  <button class="btn btn-primary" (click)="start()">Empezar 😁</button>
+</div>

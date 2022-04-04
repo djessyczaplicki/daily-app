@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Member } from 'src/app/core/interfaces';
+import { StorageService } from 'src/app/core/services/storage.service';
 
 @Component({
   selector: 'app-add-member',
@@ -7,7 +8,7 @@ import { Member } from 'src/app/core/interfaces';
 })
 export class AddMemberComponent implements OnInit {
   @Input() members: Member[] = [];
-  constructor() {}
+  constructor(private storageService: StorageService) {}
 
   ngOnInit(): void {}
 
@@ -16,6 +17,8 @@ export class AddMemberComponent implements OnInit {
   addMember() {
     console.log(this.name);
     this.members.push(this.newMember(this.name));
+    this.storageService.setMembers(this.members);
+
     this.name = '';
   }
 
