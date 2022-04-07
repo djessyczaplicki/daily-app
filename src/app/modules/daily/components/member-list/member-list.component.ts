@@ -5,25 +5,30 @@ import { StorageService } from 'src/app/core/services/storage.service';
 @Component({
   selector: 'app-member-list',
   templateUrl: './member-list.component.html',
-  styles: [
-    `
-      .bold {
-        font-weight: bold;
-      }
-      .cursor-click {
-        cursor: pointer;
-      }
-    `,
-  ],
+  styles: [],
 })
 export class MemberListComponent implements OnInit {
-  @Input() members: Member[] = [];
+  @Input() showDeleteButton: boolean = true;
   constructor(private storageService: StorageService) {}
+  members: Member[] = [];
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.members = this.storageService.getMembers();
+  }
 
   removeMember(member: Member) {
     this.members.splice(this.members.indexOf(member), 1);
-    this.storageService.setMembers(this.members)
+    this.storageService.setMembers(this.members);
+  }
+
+  shuffle() {
+    const members = this.members;
+    for (let i = members.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const temp = members[i];
+      members[i] = members[j];
+      members[j] = temp;
+    }
+    this.storageService.setMembers(this.members);
   }
 }

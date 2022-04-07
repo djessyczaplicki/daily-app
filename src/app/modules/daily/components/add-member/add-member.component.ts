@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, MaxLengthValidator, Validators } from '@angular/forms';
 import { Member } from 'src/app/core/interfaces';
 import { StorageService } from 'src/app/core/services/storage.service';
 
@@ -7,27 +8,34 @@ import { StorageService } from 'src/app/core/services/storage.service';
   templateUrl: './add-member.component.html',
 })
 export class AddMemberComponent implements OnInit {
-  @Input() members: Member[] = [];
+  members: Member[] = [];
+  name = new FormControl('', [Validators.required, Validators.maxLength(20)]);
+
   constructor(private storageService: StorageService) {}
 
-  ngOnInit(): void {}
-
-  name = '';
-
-  addMember() {
-    console.log(this.name);
-    this.members.push(this.newMember(this.name));
-    this.storageService.setMembers(this.members);
-
-    this.name = '';
+  ngOnInit(): void {
+    this.members = this.storageService.getMembers();
   }
 
-  newMember(name: String): Member {
+  addMember() {
+    if (!this.name.valid) return;
+
+    this.members.push(this.newMember(this.name.value));
+    this.storageService.setMembers(this.members);
+
+    this.name.setValue('');
+    this.name.markAsPristine();
+  }
+
+  newMember(name: string): Member {
     return {
       name,
       timeSpent: 0,
-      hasTalked: false,
       isTalking: false,
     };
+  }
+
+  badName(): boolean {
+    return this.name.invalid && this.name.dirty;
   }
 }

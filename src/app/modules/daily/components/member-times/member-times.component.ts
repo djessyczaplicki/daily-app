@@ -8,6 +8,7 @@ import { Member } from 'src/app/core/interfaces';
 })
 export class MemberTimesComponent implements OnInit {
   @Input() members: Member[] = [];
+  @Input() timePerMember: number = 60;
 
   constructor() {}
 

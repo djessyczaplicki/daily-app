@@ -12,6 +12,10 @@ import { StorageService } from 'src/app/core/services/storage.service';
 export class DailyComponent implements OnInit {
   constructor(private storageService: StorageService) {}
   members: Member[] = [];
+  membersWhoHaveTalked: Member[] = [];
+  totalTime = 0;
+  timePerMember = 0;
+  dailyLength = 0;
 
   ngOnInit(): void {
     this.members = this.storageService.getMembers();
@@ -19,11 +23,34 @@ export class DailyComponent implements OnInit {
 
   dailyState: DailyState = DailyState.ready;
 
-  stateIsReady(): Boolean {
+  stateIsReady(): boolean {
     return this.dailyState == DailyState.ready;
   }
 
-  start(timePerMember: NgbTimeStruct) {
+  stateIsStarted(): boolean {
+    return this.dailyState == DailyState.started;
+  }
+
+  stateIsFinished(): boolean {
+    return this.dailyState == DailyState.finished;
+  }
+
+  canStart() {
+    return this.members.length > 1;
+  }
+
+  start(timePerMember: number) {
     this.dailyState = DailyState.started;
+    this.timePerMember = timePerMember;
+    this.totalTime = 15 * 60;
+  }
+
+  onNext(member: Member) {
+    this.membersWhoHaveTalked.push(member);
+  }
+
+  onFinish(dailyLength: number) {
+    this.dailyLength = dailyLength;
+    this.dailyState = DailyState.finished;
   }
 }

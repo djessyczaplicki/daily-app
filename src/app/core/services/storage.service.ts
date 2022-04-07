@@ -6,10 +6,15 @@ import { Member } from '../interfaces';
 })
 export class StorageService {
   constructor() {}
+  members?: Member[];
 
   getMembers(): Member[] {
+    if (this.members != null) {
+      return this.members;
+    }
     const membersJson = localStorage.getItem('members');
-    return JSON.parse(membersJson ?? '[]');
+    this.members = JSON.parse(membersJson ?? '[]');
+    return this.members!;
   }
 
   setMembers(members: Member[]) {

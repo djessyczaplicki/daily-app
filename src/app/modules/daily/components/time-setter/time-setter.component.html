@@ -1,9 +1,42 @@
-<div class="mx-auto text-center">
-  <label>Tiempo por participante</label>
-  <div class="row pickerContainer">
-    <div class="row pickerCenterer">
-      <ngb-timepicker [(ngModel)]="time" [minuteStep]="5"></ngb-timepicker>
-    </div>
+<div
+  class="m-2 p-3 mt-5 justify-content-center text-center card"
+  style="width: fit-content"
+>
+  <label class="inline">Tiempo por participante</label>
+  <div class="d-flex justify-content-center mb-3">
+    <ngb-timepicker [(ngModel)]="time" [minuteStep]="5"></ngb-timepicker>
   </div>
-  <button class="btn btn-primary" (click)="start()">Empezar 😁</button>
+  <div class="row d-flex justify-content-center">
+    <span
+      class="col-auto p-1"
+      ngbTooltip="¡Tiene que haber un mínimo de 2 participantes para empezar!"
+      placement="bottom"
+      [disableTooltip]="canStart"
+    >
+      <button
+        class="btn btn-danger m-2"
+        placement="bottom"
+        [openDelay]="300"
+        ngbTooltip="Divide el tiempo total de la daily (15 min.) por el número de participantes"
+        (click)="spreadTime()"
+        [disabled]="!canStart"
+      >
+        Auto ⌛
+      </button>
+    </span>
+    <span
+      class="col-auto p-1"
+      ngbTooltip="¡Tiene que haber un mínimo de 2 participantes para empezar!"
+      placement="bottom"
+      [disableTooltip]="canStart"
+    >
+      <button
+        class="btn btn-primary m-2"
+        (click)="start()"
+        [disabled]="!canStart"
+      >
+        Empezar 😁
+      </button>
+    </span>
+  </div>
 </div>

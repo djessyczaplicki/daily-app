@@ -1,22 +1,33 @@
 <div class="m-3">
   <app-daily-title></app-daily-title>
-  <app-add-member
-    class="m-3"
-    [members]="members"
-    *ngIf="stateIsReady()"
-  ></app-add-member>
-  <div class="row mt-3">
+  <app-add-member class="m-3" *ngIf="stateIsReady()"></app-add-member>
+  <div class="row row-cols-1 row-cols-md-3 mt-3">
     <div class="col">
-      <app-member-times></app-member-times>
+      <app-member-times
+        [members]="membersWhoHaveTalked"
+        [timePerMember]="timePerMember"
+      ></app-member-times>
     </div>
-    <div class="col">
+    <div class="col d-flex justify-content-center">
       <app-time-setter
         *ngIf="stateIsReady()"
         (onStart)="start($event)"
+        [canStart]="canStart()"
       ></app-time-setter>
+      <app-timer
+        *ngIf="stateIsStarted()"
+        [timePerMember]="timePerMember"
+        [totalTime]="totalTime"
+        (onNext)="onNext($event)"
+        (onFinish)="onFinish($event)"
+      ></app-timer>
+      <app-results
+        *ngIf="stateIsFinished()"
+        [dailyLength]="dailyLength"
+      ></app-results>
     </div>
     <div class="col">
-      <app-member-list [members]="members"></app-member-list>
+      <app-member-list [showDeleteButton]="stateIsReady()"></app-member-list>
     </div>
   </div>
 </div>

@@ -1,41 +1,39 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Unit } from 'src/app/core/interfaces/unit';
 import { NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
-import { dailyState } from '../../../../../../.history/src/app/core/interfaces/dailyState_20220404121653';
+import { StorageService } from 'src/app/core/services/storage.service';
 
 @Component({
   selector: 'app-time-setter',
   templateUrl: './time-setter.component.html',
-  styles: [
-    `
-      .pickerContainer {
-        text-align: center;
-        justify-content: center;
-      }
-    `,
-    `
-      .pickerCenterer {
-        display: inline-block;
-        justify-content: center;
-        margin: 0 auto;
-      }
-    `,
-  ],
+  styles: [],
 })
 export class TimeSetterComponent implements OnInit {
-  @Output() onStart: EventEmitter<NgbTimeStruct> = new EventEmitter();
+  @Input() canStart: boolean = false;
+  @Output() onStart: EventEmitter<number> = new EventEmitter();
 
-  constructor() {}
+  constructor(private storageService: StorageService) {}
 
   time: NgbTimeStruct = {
     hour: 1,
-    minute: 0,
+    minute: 10,
     second: 0,
   };
 
   ngOnInit(): void {}
 
   start() {
-    this.onStart.emit(this.time);
+    this.onStart.emit(this.parseTime());
+  }
+
+  parseTime() {
+    return this.time.hour * 60 + this.time.minute;
+  }
+
+  spreadTime() {
+    const members = this.storageService.getMembers();
+    const seconds = (15 / members.length) * 60;
+    this.time.hour = Math.floor(seconds / 60);
+    this.time.minute = seconds % 60;
+    this.start();
   }
 }

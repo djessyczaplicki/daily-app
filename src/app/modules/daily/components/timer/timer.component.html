@@ -1,0 +1,34 @@
+<div class="my-2 card p-3 text-center">
+  <h3 class="bold my-2">{{ randomString | variable: actualMember.name }}</h3>
+  <button class="btn btn-primary my-3" (click)="next()">Siguiente</button>
+  <div class="progress">
+    <div
+      class="progress-bar"
+      role="progressbar"
+      [ngStyle]="{
+        width: memberProgressWidth
+      }"
+      [ngClass]="{ 'bg-danger': actualMemberTime > timePerMember }"
+    ></div>
+  </div>
+  <p>
+    Tiempo de {{ actualMember.name }} - {{ actualMemberTime | time }}/{{
+      timePerMember | time
+    }}
+  </p>
+  <div class="progress">
+    <div
+      class="progress-bar"
+      role="progressbar"
+      [ngStyle]="{ width: totalProgressWidth }"
+      [ngClass]="{ 'bg-danger': actualTime > totalTime }"
+    ></div>
+  </div>
+  <p>Tiempo total: {{ actualTime | time }}/{{ totalTime | time }}</p>
+  <img
+    class="img-fluid"
+    [src]="randomImage"
+    alt="slow"
+    *ngIf="actualMemberTime > timePerMember"
+  />
+</div>

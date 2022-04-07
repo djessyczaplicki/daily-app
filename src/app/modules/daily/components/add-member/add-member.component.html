@@ -1,4 +1,4 @@
-<div class="mx-auto" style="width: 400px; display: block">
+<div class="mx-auto card p-3" style="width: 400px; display: block">
   <label class="ms-2" for="name">Nombre del participante</label>
   <div class="input-group">
     <input
@@ -7,17 +7,21 @@
       type="text"
       id="name"
       name="name"
-      [(ngModel)]="name"
+      [formControl]="name"
+      [value]="name.value | titlecase"
       (keyup.enter)="addMember()"
     />
     <div class="input-group-append">
-      <button
-        class="btn btn-outline-primary"
-        type="button"
-        (click)="addMember()"
-      >
+      <button class="btn btn-primary" type="button" (click)="addMember()">
         Añadir
       </button>
     </div>
+  </div>
+  <div
+    class="alert alert-danger mt-2 position-absolute"
+    role="alert"
+    *ngIf="badName()"
+  >
+    El nombre tiene que tener entre 1 y 20 carácteres
   </div>
 </div>
