@@ -1,14 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-results',
   templateUrl: './results.component.html',
   styles: [],
 })
-export class ResultsComponent implements OnInit {
+export class ResultsComponent {
   @Input() dailyLength: number = 0;
-
-  constructor() {}
-
-  ngOnInit(): void {}
+  @Output() onReset: EventEmitter<any> = new EventEmitter();
 }

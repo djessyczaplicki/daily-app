@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Member } from 'src/app/core/interfaces';
+import { StorageService } from 'src/app/core/services/storage.service';
 
 @Component({
   selector: 'app-member-times',
@@ -7,10 +8,10 @@ import { Member } from 'src/app/core/interfaces';
   styles: [],
 })
 export class MemberTimesComponent implements OnInit {
-  @Input() members: Member[] = [];
+  @Input() members: Member[] = this.storageService.getSessionMembers();
   @Input() timePerMember: number = 60;
 
-  constructor() {}
+  constructor(private storageService: StorageService) {}
 
   ngOnInit(): void {}
 }

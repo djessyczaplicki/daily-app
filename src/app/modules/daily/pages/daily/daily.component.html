@@ -24,6 +24,7 @@
       <app-results
         *ngIf="stateIsFinished()"
         [dailyLength]="dailyLength"
+        (onReset)="onReset()"
       ></app-results>
     </div>
     <div class="col">

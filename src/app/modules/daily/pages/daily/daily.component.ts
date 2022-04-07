@@ -21,7 +21,7 @@ export class DailyComponent implements OnInit {
     this.members = this.storageService.getMembers();
   }
 
-  dailyState: DailyState = DailyState.ready;
+  dailyState: DailyState = DailyState.finished;
 
   stateIsReady(): boolean {
     return this.dailyState == DailyState.ready;
@@ -52,5 +52,11 @@ export class DailyComponent implements OnInit {
   onFinish(dailyLength: number) {
     this.dailyLength = dailyLength;
     this.dailyState = DailyState.finished;
+    this.storageService.setSessionMembers(this.membersWhoHaveTalked);
+  }
+
+  onReset() {
+    this.dailyState = DailyState.ready;
+    this.membersWhoHaveTalked = [];
   }
 }

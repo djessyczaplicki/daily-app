@@ -17,8 +17,18 @@ export class StorageService {
     return this.members!;
   }
 
+  getSessionMembers(): Member[] {
+    const membersJson = sessionStorage.getItem('membersWhoTalked');
+    return JSON.parse(membersJson ?? '[]');
+  }
+
   setMembers(members: Member[]) {
     const membersJson = JSON.stringify(members);
     localStorage.setItem('members', membersJson);
+  }
+
+  setSessionMembers(members: Member[]) {
+    const membersJson = JSON.stringify(members);
+    sessionStorage.setItem('membersWhoTalked', membersJson);
   }
 }

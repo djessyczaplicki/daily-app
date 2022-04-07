@@ -7,6 +7,6 @@ export class TimetextPipe implements PipeTransform {
   transform(time: number): string {
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
-    return `${minutes > 0 ? minutes + 'minuto(s) y ' : ''}${seconds} segundos`;
+    return `${minutes > 0 ? minutes + ' minutos y ' : ''}${seconds} segundos`;
   }
 }
