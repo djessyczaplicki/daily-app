@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styles: [
     `
       h1 {
-        font-family: 'Segoe Print', var(--bs-font-sans-serif);
+        font-weight: 400;
       }
     `,
   ],

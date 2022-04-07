@@ -14,7 +14,7 @@
       [disableTooltip]="canStart"
     >
       <button
-        class="btn btn-danger m-2"
+        class="btn btn-outline-danger m-2"
         placement="bottom"
         [openDelay]="300"
         ngbTooltip="Divide el tiempo total de la daily (15 min.) por el número de participantes"
@@ -31,7 +31,7 @@
       [disableTooltip]="canStart"
     >
       <button
-        class="btn btn-primary m-2"
+        class="btn btn-outline-success m-2"
         (click)="start()"
         [disabled]="!canStart"
       >
