@@ -12,7 +12,7 @@
     ></div>
   </div>
   <p>
-    Tiempo de {{ actualMember.name }} - {{ actualMemberTime | time }}/{{
+    {{ actualMember.name }}'s time - {{ actualMemberTime | time }}/{{
       timePerMember | time
     }}
   </p>
@@ -24,7 +24,7 @@
       [ngClass]="{ 'bg-danger': actualTime > totalTime }"
     ></div>
   </div>
-  <p>Tiempo total: {{ actualTime | time }}/{{ totalTime | time }}</p>
+  <p>Total time: {{ actualTime | time }}/{{ totalTime | time }}</p>
   <img
     class="img-fluid"
     [src]="randomImage"

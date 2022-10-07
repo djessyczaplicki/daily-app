@@ -5,7 +5,13 @@ import { StorageService } from 'src/app/core/services/storage.service';
 @Component({
   selector: 'app-member-list',
   templateUrl: './member-list.component.html',
-  styles: [],
+  styles: [
+    `
+      button.badge {
+        border-color: rgba(200, 200, 200, 255);
+      }
+    `,
+  ],
 })
 export class MemberListComponent implements OnInit {
   @Input() showDeleteButton: boolean = true;

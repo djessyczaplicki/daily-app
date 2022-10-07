@@ -1,9 +1,9 @@
 <div class="mx-auto card p-3" style="width: 400px; display: block">
-  <label class="ms-2" for="name">Nombre del participante</label>
+  <label class="ms-2" for="name">Member's name:</label>
   <div class="input-group">
     <input
       class="form-control"
-      placeholder="Introduce el nombre del participante"
+      placeholder="Introduce the name of the new member"
       type="text"
       id="name"
       name="name"
@@ -17,7 +17,7 @@
         type="button"
         (click)="addMember()"
       >
-        Añadir
+        Add
       </button>
     </div>
   </div>
@@ -26,6 +26,6 @@
     role="alert"
     *ngIf="badName()"
   >
-    El nombre tiene que tener entre 1 y 20 carácteres
+    The name must be between 1 and 20 characters long.
   </div>
 </div>

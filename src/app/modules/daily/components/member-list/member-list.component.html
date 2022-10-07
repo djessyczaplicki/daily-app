@@ -2,13 +2,15 @@
   <li
     class="list-group-item d-flex justify-content-between align-items-start bg-light"
   >
-    <div class="ms-2 me-auto">Participantes:</div>
-    <span
+    <div class="ms-2 me-auto">Members:</div>
+    <button
       *ngIf="showDeleteButton"
       class="badge bg-success pill rounded-pill cursor-click"
       (click)="shuffle()"
-      >Aleatorio 🎲</span
+      role="button"
     >
+      Shuffle 🎲
+    </button>
   </li>
   <li
     *ngFor="let member of members"
@@ -18,11 +20,12 @@
     <div class="ms-2 me-auto">
       {{ member.name }}
     </div>
-    <span
+    <button
       *ngIf="showDeleteButton"
       class="badge bg-danger rounded-pill cursor-click"
       (click)="removeMember(member)"
-      >X</span
     >
+      X
+    </button>
   </li>
 </ul>

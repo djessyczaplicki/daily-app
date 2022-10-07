@@ -34,20 +34,23 @@ export class TimerComponent implements OnInit {
     'https://i.gifer.com/3Rdk.gif',
     'https://media0.giphy.com/media/RkzJzW4xUm0X6/200w.gif?cid=82a1493b4oleoinlj6nvvko9q6nl01bwijm7p1j8x79o1g69&rid=200w.gif&ct=g',
     'https://i.pinimg.com/originals/a9/ec/b8/a9ecb81b915236f79cea7a8b22befc1a.gif',
+    'https://media3.giphy.com/media/l0MYOUI5XfRk4LLWM/giphy.gif?cid=ecf05e47qj2p361mtvuyy5l5l3fspr9xzegwhukbcotgwr9k&rid=giphy.gif&ct=g',
+    'https://media4.giphy.com/media/229Pljon180JF07BaX/giphy.gif?cid=ecf05e47qj2p361mtvuyy5l5l3fspr9xzegwhukbcotgwr9k&rid=giphy.gif&ct=g',
+    'https://media0.giphy.com/media/l41JP67uBy95EI3hm/giphy.gif?cid=ecf05e47e3f99gy3t8bvwpqlwsj57njqpd6z26uknu76k304&rid=giphy.gif&ct=g',
   ];
   randomImage = this.getRandomImage();
   memberProgressWidth = '0%';
   members: Member[] = [];
   strings = [
-    '¿Cuéntanos algo %!',
-    '¿Como fue tu día de ayer %?',
-    '%, ¿qué te cuentas?',
-    'Siento que % nos va a contar algo interesante...',
-    'Estamos atentos %',
-    '¡% ha pasado un gran día ayer!',
-    'Somos todos oídos %',
-    '%, cuéntanos tus asuntos',
-    'Háblanos de tí %',
+    'Tell us something %!',
+    'How was your day yesterday %?',
+    "%, What's up?",
+    'I have a felling that % is going to tell us something interesting...',
+    'We are attentive %',
+    '% had a great day yesterday!',
+    'We are all ears %',
+    '%, tell us your affairs',
+    'Tell us about yourself %',
   ];
   randomString = this.getRandomString();
   timerInterval?: ReturnType<typeof setTimeout>;
